@@ -87,7 +87,7 @@ views, templates, models, URL routing, forms, and database operations.
 1. **Clone the repository**
 
    ```bash
-   git clone https://github.com/username/single-vendor-ecommerce.git
+   git clone https://github.com/MehdiHossenFahim/single-vendor-ecommerce.gitgit
    cd single-vendor-ecommerce
    ```
 

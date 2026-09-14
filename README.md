@@ -18,6 +18,16 @@ views, templates, models, URL routing, forms, and database operations.
 - Responsive Bootstrap 5 layout with custom CSS theming
 - JavaScript for cart quantity feedback, quantity-input validation, and checkout form validation
 
+## Screenshots
+
+|                                                                             **Home Page**                                                                              |                                                                         **Product Listing**                                                                          |
+| :--------------------------------------------------------------------------------------------------------------------------------------------------------------------: | :------------------------------------------------------------------------------------------------------------------------------------------------------------------: |
+|         <img src="assets/screenshots/home.png" alt="Home Page" width="100%" height="280" style="object-fit: cover; object-position: top; border-radius: 6px;">         | <img src="assets/screenshots/product_list.png" alt="Product Listing" width="100%" height="280" style="object-fit: cover; object-position: top; border-radius: 6px;"> |
+|                                                                          **Product Details**                                                                           |                                                                          **Shopping Cart**                                                                           |
+| <img src="assets/screenshots/product_detail.png" alt="Product Details" width="100%" height="280" style="object-fit: cover; object-position: top; border-radius: 6px;"> |  <img src="assets/screenshots/cart_detail.png" alt="Shopping Cart" width="100%" height="280" style="object-fit: cover; object-position: top; border-radius: 6px;">   |
+|                                                                           **Checkout Page**                                                                            |                                                                                                                                                                      |
+|     <img src="assets/screenshots/checkout.png" alt="Checkout Page" width="100%" height="280" style="object-fit: cover; object-position: top; border-radius: 6px;">     |                                                                                                                                                                      |
+
 ## Tech Stack
 
 - Python / Django 6.1

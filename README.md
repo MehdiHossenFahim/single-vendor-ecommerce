@@ -1,4 +1,4 @@
-# PageTurner — Single Vendor Book Shop (Django)
+# bookShop — Single Vendor Book Shop (Django)
 
 A simple single-vendor e-commerce website for an online **Book Shop**, built with Django,
 HTML, CSS, JavaScript and Bootstrap 5. Built as a course assignment to practice Django

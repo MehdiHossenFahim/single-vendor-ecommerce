@@ -1,5 +1,7 @@
 # bookShop — Single Vendor Book Shop (Django)
 
+[![Live Demo](https://img.shields.io/badge/Live%20Demo-PythonAnywhere-2b5b84?style=for-the-badge&logo=python&logoColor=white)](https://mehdihossenfahim.pythonanywhere.com/)
+
 A simple single-vendor e-commerce website for an online **Book Shop**, built with Django,
 HTML, CSS, JavaScript and Bootstrap 5. Built as a course assignment to practice Django
 views, templates, models, URL routing, forms, and database operations.

@@ -102,8 +102,6 @@ Django Admin panel at `/admin/`.
 - The shopping cart is stored in the Django session (no login required to shop).
 - Placing an order creates one `Order` row per cart line item, reduces the matching
   product's stock, and clears the cart.
-- `DEBUG = True` and the bundled `SECRET_KEY` are for local/course use only — do not
-  deploy this configuration to production as-is.
 
 ## Bonus Features Implemented
 

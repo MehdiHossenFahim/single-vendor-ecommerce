@@ -38,18 +38,41 @@ views, templates, models, URL routing, forms, and database operations.
 ## Project Structure
 
 ```
-ecommerce_project/      # Django project settings, root URLs
-shop/                   # Main app: models, views, urls, admin, cart logic
-  management/commands/  # seed_data command with sample books
-  migrations/
-templates/shop/         # All HTML templates (base, home, products, product_detail,
-                         # cart, checkout, order_success)
-static/
-  css/style.css
-  js/cart.js
-media/                  # Uploaded product images (created at runtime)
-requirements.txt
-manage.py
+📁 single-vendor-ecommerce/
+   ├── 📁  media/                      # Runtime user uploads (e.g., product images)
+   ├── 📁  static/                     # Global static assets
+   │   ├── 📁  css/
+   │   │   └── style.css
+   │   └── 📁 j s/
+   │       └── cart.js
+   ├── 📁  templates/                  # Global templates directory
+   │   └── 📁  shop/
+   │       ├── base.html
+   │       ├── home.html
+   │       ├── products.html
+   │       ├── product_detail.html
+   │       ├── cart.html
+   │       ├── checkout.html
+   │       └── order_success.html
+   ├── 📁  shop/                       # Main Django application module
+   │   ├── 📁  management/
+   │   │   └── 📁  commands/
+   │   │       └── seed_data.py   # Data seeding script
+   │   ├── 📁  migrations/
+   │   ├── admin.py
+   │   ├── apps.py
+   │   ├── models.py
+   │   ├── tests.py
+   │   ├── urls.py
+   │   └── views.py
+   ├── 📁  ecommerce_project/          # Root Django project configuration package
+   │   ├── __init__.py
+   │   ├── asgi.py
+   │   ├── settings.py
+   │   ├── urls.py
+   │   └── wsgi.py
+   ├── manage.py                   # Django CLI utility
+   └── requirements.txt            # Project dependencies
 ```
 
 ## Models

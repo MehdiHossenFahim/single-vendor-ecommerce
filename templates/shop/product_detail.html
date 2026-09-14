@@ -1,0 +1,84 @@
+{% extends "shop/base.html" %}
+{% block title %}{{ product.name }} - bookShop{% endblock %}
+{% block content %}
+  <div class="container my-5">
+    <!-- Custom Styled Breadcrumb -->
+    <nav aria-label="breadcrumb" class="mb-4">
+      <ol class="breadcrumb mb-0">
+        <li class="breadcrumb-item"><a href="{% url 'shop:home' %}" class="text-decoration-none text-muted">Home</a></li>
+        <li class="breadcrumb-item"><a href="{% url 'shop:product_list' %}"
+   class="text-decoration-none text-muted">Explore Books</a></li>
+        <li class="breadcrumb-item active text-dark fw-semibold"
+            aria-current="page">{{ product.name }}</li>
+      </ol>
+    </nav>
+    <div class="row g-5 align-items-center">
+      <!-- Image Section -->
+      <div class="col-md-5">
+        {% if product.image %}
+          <img src="{{ product.image.url }}"
+               class="img-fluid detail-img shadow-sm"
+               alt="{{ product.name }}">
+        {% else %}
+          <div class="detail-img placeholder-img d-flex align-items-center justify-content-center">
+            <i class="bi bi-book fs-1"></i>
+          </div>
+        {% endif %}
+      </div>
+      <!-- Product Details Section -->
+      <div class="col-md-7">
+        {% if product.category %}
+          <span class="badge bg-light text-dark border px-3 py-2 mb-3 rounded-pill fw-medium fs-7">
+            <i class="bi bi-tag-fill me-1 text-muted"></i>{{ product.category.name }}
+          </span>
+        {% endif %}
+        <h1 class="font-heading display-6 fw-bold mb-3 text-dark">{{ product.name }}</h1>
+        <h3 class="product-price fs-2 mb-4"
+            style="color: var(--color-iron-grey)">${{ product.price }}</h3>
+        <p class="text-muted leading-relaxed mb-4 fs-6">{{ product.description }}</p>
+        <!-- Stock Status -->
+        <div class="mb-4">
+          {% if product.in_stock %}
+            <span class="text-success fw-medium d-inline-flex align-items-center gap-2">
+              <i class="bi bi-check-circle-fill"></i> In Stock ({{ product.quantity }} available)
+            </span>
+          {% else %}
+            <span class="text-danger fw-medium d-inline-flex align-items-center gap-2">
+              <i class="bi bi-x-circle-fill"></i> Out of Stock
+            </span>
+          {% endif %}
+        </div>
+        <!-- Add to Cart Form -->
+        <form method="post"
+              action="{% url 'shop:cart_add' product.pk %}"
+              class="mt-4">
+          {% csrf_token %}
+          <div class="row g-3 align-items-center">
+            <div class="col-auto">
+              <label for="quantity" class="form-label fw-semibold mb-0 text-dark">Quantity</label>
+            </div>
+            <div class="col-auto">
+              <input type="number"
+                     id="quantity"
+                     name="quantity"
+                     value="1"
+                     min="1"
+                     max="{{ product.quantity }}"
+                     class="form-control text-center shadow-none border"
+                     style="width: 80px;
+                            border-radius: 8px"
+                     {% if not product.in_stock %}disabled{% endif %}>
+            </div>
+            <div class="col-auto">
+              <button type="submit"
+                      class="btn btn-accent px-4 py-2 d-inline-flex align-items-center gap-2"
+                      {% if not product.in_stock %}disabled{% endif %}>
+                <i class="bi bi-cart-plus"></i> Add to Cart
+              </button>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+{% endblock %}

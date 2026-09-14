@@ -1,0 +1,82 @@
+{% extends "shop/base.html" %}
+{% block title %}Checkout - bookShop{% endblock %}
+{% block content %}
+  <div class="container my-5">
+    <h2 class="section-title mb-4">Checkout</h2>
+    <div class="row g-4">
+      <!-- Form Side -->
+      <div class="col-lg-7">
+        <div class="card border-0 shadow-sm rounded-4 p-4 p-md-4">
+          <h4 class="font-heading fw-bold mb-4 text-dark">
+            <i class="bi bi-truck text-muted me-2"></i>Delivery Details
+          </h4>
+          <form method="post" novalidate id="checkout-form">
+            {% csrf_token %}
+            {% for field in form %}
+              <div class="mb-3">
+                <label for="{{ field.id_for_label }}" class="form-label fw-medium text-dark">{{ field.label }}</label>
+                {{ field }}
+                {% if field.errors %}
+                  <div class="text-danger small mt-1"><i class="bi bi-exclamation-circle me-1"></i>{{ field.errors|striptags }}</div>
+                {% endif %}
+              </div>
+            {% endfor %}
+            <button type="submit"
+                    class="btn btn-accent btn-lg w-100 py-3 mt-3 shadow-sm rounded-2">
+              <i class="bi bi-shield-check me-2"></i>Place Order
+            </button>
+          </form>
+        </div>
+      </div>
+      <!-- Summary Side -->
+      <div class="col-lg-5">
+        <div class="card border-0 shadow-sm rounded-4 p-4 bg-white sticky-lg-top"
+             style="top: 100px">
+          <h4 class="font-heading fw-bold mb-3 text-dark">Order Summary</h4>
+          <ul class="list-group list-group-flush mb-3">
+            {% for item in cart %}
+              <li class="list-group-item d-flex justify-content-between align-items-center px-0 py-3 bg-transparent border-bottom">
+                <div class="d-flex align-items-center gap-2">
+                  <span class="badge bg-light text-dark border me-1">{{ item.quantity }}x</span>
+                  <span class="text-dark fw-medium">{{ item.product.name }}</span>
+                </div>
+                <span class="fw-semibold text-dark">${{ item.total_price }}</span>
+              </li>
+            {% endfor %}
+          </ul>
+          <div class="d-flex justify-content-between align-items-center pt-2 fw-bold fs-5 text-dark">
+            <span>Total</span>
+            <span style="color: var(--color-iron-grey);">${{ cart.get_total_price }}</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+{% endblock %}
+{% block extra_scripts %}
+  <script>
+  // Simple client-side form validation feedback
+  document.getElementById('checkout-form').addEventListener('submit', function (e) {
+    let valid = true;
+    this.querySelectorAll('input[required], textarea[required]').forEach(function (field) {
+      if (!field.value.trim()) {
+        valid = false;
+        field.classList.add('is-invalid');
+      } else {
+        field.classList.remove('is-invalid');
+      }
+    });
+
+    const phone = this.querySelector('input[name="phone"]');
+    if (phone && phone.value && !/^[0-9+\-\s()]{6,20}$/.test(phone.value)) {
+      valid = false;
+      phone.classList.add('is-invalid');
+    }
+
+    if (!valid) {
+      e.preventDefault();
+      alert('Please fill in all fields correctly before placing your order.');
+    }
+  });
+  </script>
+{% endblock %}

@@ -1,0 +1,88 @@
+{% extends "shop/base.html" %}
+{% load static %}
+{% block title %}bookShop - Curated Online Bookstore{% endblock %}
+{% block content %}
+  <div class="hero-banner text-white text-center d-flex align-items-center justify-content-center py-5">
+    <div class="container position-relative" style="z-index: 1;">
+      <h1 class="display-4 fw-bold mb-3">Welcome to bookShop</h1>
+      <p class="lead text-light opacity-75 mb-4 mx-auto"
+         style="max-width: 600px">Discover your next favorite book, handpicked and delivered straight to your door.</p>
+      <a href="{% url 'shop:product_list' %}"
+         class="btn btn-accent btn-lg px-4 py-2 shadow-sm">
+        Explore Collection <i class="bi bi-arrow-right ms-2"></i>
+      </a>
+    </div>
+  </div>
+  <div class="container my-5">
+    <h2 class="section-title">Browse Categories</h2>
+    <div class="row g-3">
+      {% for category in categories %}
+        <div class="col-6 col-md-3">
+          <a href="{% url 'shop:product_list' %}?category={{ category.slug }}"
+             class="text-decoration-none">
+            <div class="card category-card text-center p-3 h-100">
+              <div class="card-body p-2 d-flex flex-column align-items-center justify-content-center">
+                <div class="category-icon-wrapper mb-3">
+                  <i class="bi bi-journal-bookmark fs-4"></i>
+                </div>
+                <p class="mb-0 fw-semibold text-dark fs-6">{{ category.name }}</p>
+              </div>
+            </div>
+          </a>
+        </div>
+      {% empty %}
+        <div class="col-12">
+          <p class="text-muted fst-italic">No categories available yet.</p>
+        </div>
+      {% endfor %}
+    </div>
+  </div>
+  <div class="container my-5">
+    <h2 class="section-title">Featured Books</h2>
+    <div class="row g-4">
+      {% for product in featured_products %}
+        <div class="col-sm-6 col-md-4 col-lg-3">
+          <div class="card product-card h-100">
+            {% if product.image %}
+              <img src="{{ product.image.url }}"
+                   class="card-img-top product-img"
+                   alt="{{ product.name }}">
+            {% else %}
+              <div class="card-img-top product-img placeholder-img d-flex align-items-center justify-content-center">
+                <i class="bi bi-book fs-1"></i>
+              </div>
+            {% endif %}
+            <div class="card-body d-flex flex-column p-3">
+              <h5 class="card-title product-title text-truncate mb-2"
+                  title="{{ product.name }}">{{ product.name }}</h5>
+              <p class="card-text text-muted small flex-grow-1 mb-3">{{ product.description|truncatewords:10 }}</p>
+              <div class="d-flex align-items-center justify-content-between mb-3">
+                <span class="product-price">${{ product.price }}</span>
+                {% if not product.in_stock %}
+                  <span class="badge bg-secondary">Out of Stock</span>
+                {% endif %}
+              </div>
+              <div class="d-grid gap-2">
+                <a href="{% url 'shop:product_detail' product.pk %}"
+                   class="btn btn-outline-dark btn-sm rounded-2">Details</a>
+                <form method="post" action="{% url 'shop:cart_add' product.pk %}">
+                  {% csrf_token %}
+                  <input type="hidden" name="quantity" value="1">
+                  <button type="submit"
+                          class="btn btn-accent btn-sm rounded-2 w-100"
+                          {% if not product.in_stock %}disabled{% endif %}>
+                    <i class="bi bi-cart-plus me-1"></i> Add to Cart
+                  </button>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+      {% empty %}
+        <div class="col-12">
+          <p class="text-muted fst-italic">No featured books available at the moment.</p>
+        </div>
+      {% endfor %}
+    </div>
+  </div>
+{% endblock %}

@@ -1,6 +1,8 @@
 # bookShop — Single Vendor Book Shop (Django)
 
-[![Live Demo](https://img.shields.io/badge/Live%20Demo-PythonAnywhere-2b5b84?style=for-the-badge&logo=python&logoColor=white)](https://mehdihossenfahim.pythonanywhere.com/)
+<a href="https://mehdihossenfahim.pythonanywhere.com/" target="_blank" rel="noopener noreferrer">
+  <img src="https://img.shields.io/badge/⚡_LIVE_DEMO-EXPLORE_NOW-00F2FE?style=for-the-badge&logo=python&logoColor=00F2FE&labelColor=7F00FF" alt="Live Demo" />
+</a>
 
 A simple single-vendor e-commerce website for an online **Book Shop**, built with Django,
 HTML, CSS, JavaScript and Bootstrap 5. Built as a course assignment to practice Django
@@ -87,7 +89,7 @@ views, templates, models, URL routing, forms, and database operations.
 1. **Clone the repository**
 
    ```bash
-   git clone https://github.com/MehdiHossenFahim/single-vendor-ecommerce.gitgit
+   git clone https://github.com/MehdiHossenFahim/single-vendor-ecommerce.git
    cd single-vendor-ecommerce
    ```
 
